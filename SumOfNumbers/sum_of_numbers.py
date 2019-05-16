@@ -22,15 +22,10 @@ def get_sum(a: int, b: int):
     if delta == 0 :
         return numbers[0]
 
-    print(str(delta) + " this is delta")
-
     if (delta > 1):
        i = 1
        while i < delta:
            numbers.append(numbers[0] + i)
            i = i + 1
-           print(str(i) + " this is index")
-
-    print(str(numbers) + " this is final numbers")
 
     return sum(numbers)
