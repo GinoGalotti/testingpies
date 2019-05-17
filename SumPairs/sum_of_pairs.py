@@ -1,4 +1,4 @@
-def find_pair(numbers: list, target: int): 
+def find_pair_first_solution(numbers: list, target: int): 
 
     lowest_pair_index = len(numbers)
     lowest_pair = None
@@ -40,9 +40,11 @@ def find_pair(numbers: list, target: int):
     return lowest_pair
 
 
-def find_pair_pretty(lst, s):
+# Internet helped me finding a prettier solution
+def find_pair(numbers: list, element: int):
     cache = set()
-    for i in lst:
-        if s - i in cache:
-            return [s - i, i]
+    for i in numbers:
+        # Shortest path will always be from the first time you find the second element
+        if element - i in cache:
+            return [element - i, i]
         cache.add(i)
