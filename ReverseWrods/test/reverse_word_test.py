@@ -20,4 +20,5 @@ class ReverseWord(unittest.TestCase):
         self.assertEqual(reverse_words.reverse(" hi darling"), "darling hi")
 
     def test_three_words(self):
-        self.assertEqual(reverse_words.reverse("hi! darling home"), "home darling hi!")
+        self.assertEqual(reverse_words.reverse(
+            "hi! darling home"), "home darling hi!")

@@ -1,4 +1,4 @@
-def find_pair_first_solution(numbers: list, target: int): 
+def find_pair_first_solution(numbers: list, target: int):
 
     lowest_pair_index = len(numbers)
     lowest_pair = None
@@ -13,27 +13,30 @@ def find_pair_first_solution(numbers: list, target: int):
         if (x >= target):
             break
 
-        print ("First number is " + str(x) + " from " + str(sorted_numbers[0:-1]))
+        print("First number is " + str(x) +
+              " from " + str(sorted_numbers[0:-1]))
         # We only care if it's below the target
 
         for y in sorted_numbers[index:]:
 
-            print("I am testing " + str(y) + " from " + str(sorted_numbers[index:]))
+            print("I am testing " + str(y) + " from " +
+                  str(sorted_numbers[index:]))
             if (x + y > target):
                 break
-            
+
             if (x + y == target):
 
                 # This way it allows me to get the index for the two elements, even if they are the same
                 index_x = numbers.index(x)
                 pair_index = index_x - numbers.index(y, index_x) * -1
 
-                print("pair is " + str([x,y]) + " with index " + str(pair_index))
+                print("pair is " + str([x, y]) +
+                      " with index " + str(pair_index))
                 if (pair_index < lowest_pair_index):
                     lowest_pair_index = pair_index
                     lowest_pair = [x, y]
-                
-                break          
+
+                break
 
         index = index + 1
 

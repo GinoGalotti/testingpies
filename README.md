@@ -6,3 +6,5 @@ I am not aiming for a brilliant solution, but a timely one that is "good enough"
 
 I also put extra care on extending the pytest unit testing.
 
+There are descriptions on the code of the solution
+
