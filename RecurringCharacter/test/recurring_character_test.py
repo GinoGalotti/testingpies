@@ -18,9 +18,10 @@ class GetSum(unittest.TestCase):
 
     def test_no_duplicate(self):
         self.assertEqual(recurring_character.recurring_character('AB'), '')
-    
+
     def test_empty_string(self):
         self.assertEqual(recurring_character.recurring_character(''), '')
 
     def test_long_string(self):
-        self.assertEqual(recurring_character.recurring_character('ACIDECALE'), 'C')
+        self.assertEqual(
+            recurring_character.recurring_character('ACIDECALE'), 'C')

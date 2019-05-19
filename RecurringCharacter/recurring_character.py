@@ -1,4 +1,5 @@
-# Given a string, return the first recurring character. For instance, from 'ACBDBA', return 'B'. 
+# Given a string, return the first recurring character. For instance, from 'ACBDBA', return 'B'.
+
 
 def recurring_character_first_attempt(word: str):
     start = 1
@@ -8,8 +9,8 @@ def recurring_character_first_attempt(word: str):
             return letter
         start = start + 1
 
-
     return ''
+
 
 def recurring_character(word: str):
 
