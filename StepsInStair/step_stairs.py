@@ -16,7 +16,7 @@ class Stair:
         self.count_ways(possible_steps, 0)
         self.partial_solutions = []
 
-        return self.total_ways
+        return self.count_ways_performant(possible_steps, self.steps)
 
     def count_ways(self, possible_steps, starting_point):
 
@@ -32,13 +32,21 @@ class Stair:
                 self.count_ways(possible_steps,new_position)
 
     # we can save the partial solutions as this is a fibonacci. WIP
-    def count_ways_performant(self, possible_steps, pending_steps):
+    def count_ways_performant(self, possible_steps, steps):
 
-        if pending_steps == 0:
+        if steps == 0:
             return 1
 
-        for step in possible_steps:
-            if pending_steps == step:
-                self.partial_solutions[step] = self.partial_solutions[step] + 1
-            
+        # Here we will store the partial solutions so we don't compute them again
+        partial_solutions = [None] * (steps + 1)
+        partial_solutions[0] = 1
+
+        for i in range(1,steps+1):
+            total = 0
+            for step in possible_steps:
+                if step <= i:
+                    total = total + partial_solutions[i - step]
+            partial_solutions[i] = total 
+        print(str(partial_solutions))
+        return partial_solutions[steps]
 
