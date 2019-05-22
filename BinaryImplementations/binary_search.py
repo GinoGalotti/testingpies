@@ -26,7 +26,7 @@ def search_iterative(number: int, array: list):
 
     return found
 
-def searchPython(number:int, array:list):
+def search_python(number:int, array:list):
     try:
         index = array.index(number)
     except:
