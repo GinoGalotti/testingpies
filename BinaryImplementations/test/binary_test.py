@@ -33,6 +33,7 @@ class IterativeTests(unittest.TestCase):
         self.assertEqual(1, binary_search.search_iterative(3, [1, 3, 5, 7]))
         self.assertEqual(2, binary_search.search_iterative(5, [1, 3, 5, 7]))
         self.assertEqual(3, binary_search.search_iterative(7, [1, 3, 5, 7]))
+        self.assertEqual(3, binary_search.search_iterative(7, [1, 3, 5, 7,9]))
 
     def test_missing_in_between(self):
         self.assertEqual(-1, binary_search.search_iterative(2, [1, 3, 5]))
@@ -72,6 +73,7 @@ class RecursiveTests(unittest.TestCase):
         self.assertEqual(1, binary_search.search_recursive(3, [1, 3, 5, 7]))
         self.assertEqual(2, binary_search.search_recursive(5, [1, 3, 5, 7]))
         self.assertEqual(3, binary_search.search_recursive(7, [1, 3, 5, 7]))
+        self.assertEqual(3, binary_search.search_recursive(7, [1, 3, 5, 7, 9]))
 
     def test_missing_in_between(self):
         self.assertEqual(-1, binary_search.search_recursive(2, [1, 3, 5]))
@@ -111,6 +113,7 @@ class ThreadTests(unittest.TestCase):
         self.assertEqual(1, binary_search.search_thread(3, [1, 3, 5, 7]))
         self.assertEqual(2, binary_search.search_thread(5, [1, 3, 5, 7]))
         self.assertEqual(3, binary_search.search_thread(7, [1, 3, 5, 7]))
+        self.assertEqual(3, binary_search.search_thread(7, [1, 3, 5, 7,9]))
 
     def test_missing_in_between(self):
         self.assertEqual(-1, binary_search.search_thread(2, [1, 3, 5]))
@@ -120,6 +123,44 @@ class ThreadTests(unittest.TestCase):
         self.assertEqual(-1, binary_search.search_thread(4, [1, 3, 5, 7]))
         self.assertEqual(-1, binary_search.search_thread(6, [1, 3, 5, 7]))
 
+class ImprovedLoopTests(unittest.TestCase):
+    """
+    Seems to not be able to use a BeforeAll to initiate the Kata http://pythontesting.net/framework/pytest/pytest-xunit-style-fixtures/
+    """
+
+    def test_search_empty(self):
+        self.assertEqual(-1, binary_search.search_improved_loop(3, []))
+
+    def test_search_out_of_boundary(self):
+        self.assertEqual(-1, binary_search.search_improved_loop(3, [1]))
+
+        self.assertEqual(-1, binary_search.search_improved_loop(0, [1, 3, 5]))
+        self.assertEqual(-1, binary_search.search_improved_loop(6, [1, 3, 5]))
+
+        self.assertEqual(-1, binary_search.search_improved_loop(0, [1, 3, 5, 7]))
+        self.assertEqual(-1, binary_search.search_improved_loop(8, [1, 3, 5, 7]))
+
+    def test_find_in_two(self):
+        self.assertEqual(0, binary_search.search_improved_loop(1, [1, 3]))
+
+    def test_find_in_three(self):
+        self.assertEqual(0, binary_search.search_improved_loop(1, [1, 3, 5]))
+        self.assertEqual(1, binary_search.search_improved_loop(3, [1, 3, 5]))
+        self.assertEqual(2, binary_search.search_improved_loop(5, [1, 3, 5]))
+
+    def test_find_in_four(self):
+        self.assertEqual(0, binary_search.search_improved_loop(1, [1, 3, 5, 7]))
+        self.assertEqual(1, binary_search.search_improved_loop(3, [1, 3, 5, 7]))
+        self.assertEqual(2, binary_search.search_improved_loop(5, [1, 3, 5, 7]))
+        self.assertEqual(3, binary_search.search_improved_loop(7, [1, 3, 5, 7]))
+
+    def test_missing_in_between(self):
+        self.assertEqual(-1, binary_search.search_improved_loop(2, [1, 3, 5]))
+        self.assertEqual(-1, binary_search.search_improved_loop(4, [1, 3, 5]))
+
+        self.assertEqual(-1, binary_search.search_improved_loop(2, [1, 3, 5, 7]))
+        self.assertEqual(-1, binary_search.search_improved_loop(4, [1, 3, 5, 7]))
+        self.assertEqual(-1, binary_search.search_improved_loop(6, [1, 3, 5, 7]))
 
 class LongTests(unittest.TestCase):
 
@@ -145,3 +186,6 @@ class LongTests(unittest.TestCase):
 
     def test_long_one_thread(self):
         self.assertEqual(0, binary_search.search_thread(0, self.long_array))
+
+    def test_long_one_improved_loop(self):
+        self.assertEqual(0, binary_search.search_improved_loop(0, self.long_array))

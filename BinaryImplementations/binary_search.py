@@ -16,15 +16,48 @@ def search_iterative(number: int, array: list):
             # If we took a turn
             if index < half:
                 break
-            index = index + 1
+            index += 1
 
         if element > number:
             # If we took a turn
             if index > half:
                 break
-            index = index - 1
+            index -= 1
 
     return found
+
+# Improved loop!
+
+
+def search_improved_loop(number: int, array: list):
+    size = len(array)
+    if size == 0:
+        return -1
+
+    found = -1
+    
+    start = 0
+    end = size -1
+    
+    max_iterations = (size//2) + 1
+    i = 0
+    
+    while (i <= max_iterations):
+        index = start + ((end - start) // 2)
+        
+        if array[index] == number:
+            found = index
+            break
+
+        if number > array[index]:
+            start = index + 1
+        else:
+            end = index
+        
+        i += 1
+
+    return found
+
 
 # Doing half jumps all the time. Problem is returning the right index, solved by adding the different halves
 
@@ -47,13 +80,15 @@ def search_recursive(number: int, array: list):
     if number < element:
         found = search_recursive(number, array[:half])
     else:
-        found = search_recursive(number, array[half:])
+        found = search_recursive(number, array[half+1:])
         if found > -1:
-            found = found + half
+            found = found + half + 1
 
     return found
 
-#It is slower than recursive so... I'm creating too much overhead. Having something recursive in a thread is not a good idea.
+# It is slower than recursive so... I'm creating too much overhead. Having something recursive in a thread is not a good idea.
+
+
 def search_thread(number: int, array: list):
     def run(number: int, array: list, starting_index: int):
         if array == []:
@@ -80,7 +115,7 @@ def search_thread(number: int, array: list):
         return starting_index + found
 
     if array == []:
-            return -1
+        return -1
 
     maximum_threads = 8
 
