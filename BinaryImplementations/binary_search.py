@@ -26,7 +26,7 @@ def search_iterative(number: int, array: list):
 
     return found
 
-# Improved loop!
+# Improved loop! Was hard till I started using start/end
 
 
 def search_improved_loop(number: int, array: list):
@@ -35,16 +35,16 @@ def search_improved_loop(number: int, array: list):
         return -1
 
     found = -1
-    
+
     start = 0
-    end = size -1
-    
+    end = size - 1
+
     max_iterations = (size//2) + 1
     i = 0
-    
+
     while (i <= max_iterations):
         index = start + ((end - start) // 2)
-        
+
         if array[index] == number:
             found = index
             break
@@ -53,15 +53,12 @@ def search_improved_loop(number: int, array: list):
             start = index + 1
         else:
             end = index
-        
+
         i += 1
 
     return found
 
-
 # Doing half jumps all the time. Problem is returning the right index, solved by adding the different halves
-
-
 def search_recursive(number: int, array: list):
     if array == []:
         return -1

@@ -166,12 +166,12 @@ class LongTests(unittest.TestCase):
 
     @classmethod
     def setup_class(cls):
-        ones = [1] * 999999
-        twos = [2] * 999999
-        threes = [3] * 999999
-        fours = [4] * 999999
-        fives = [5] * 999999
-        sixs = [6] * 999999
+        ones = [1] * 3999999
+        twos = [2] * 3999999
+        threes = [3] * 3999999
+        fours = [4] * 3999999
+        fives = [5] * 3999999
+        sixs = [6] * 3999999
         cls.long_array = list([0]+ones+twos+threes+fours+fives+sixs)
 
     def test_long_one_python(self):
