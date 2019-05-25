@@ -59,6 +59,8 @@ def search_improved_loop(number: int, array: list):
     return found
 
 # Doing half jumps all the time. Problem is returning the right index, solved by adding the different halves
+
+
 def search_recursive(number: int, array: list):
     if array == []:
         return -1
