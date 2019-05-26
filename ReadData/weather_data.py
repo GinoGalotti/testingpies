@@ -4,7 +4,7 @@ from collections import namedtuple
 
 class WeatherData:
     path = "weather.dat"
-    DataStruct = namedtuple("DataStruct", "Day Max Min")
+    WeatherStruct = namedtuple("WeatherStruct", "Day Max Min")
 
     def read_data(self):
         data = []
@@ -20,7 +20,7 @@ class WeatherData:
 
                 match = re.search(regex, line)
 
-                day = self.DataStruct(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+                day = self.WeatherStruct(int(match.group(1)), int(match.group(2)), int(match.group(3)))
                 data.append(day)
                 index += 1
 
