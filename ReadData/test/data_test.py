@@ -1,22 +1,14 @@
 import unittest
 
-from weather_data import WeatherData
-from football_data import FootballData
+import weather_data
+import football_data
 
 class WeatherTests(unittest.TestCase):
 
-    @classmethod
-    def setup_class(cls):
-        cls.weather_data = WeatherData()
-
     def test_it_works(self):
-        self.assertEqual(14, self.weather_data.minimum_spread())
+        self.assertEqual("14", weather_data.minimum_difference())
 
 class FootballTests(unittest.TestCase):
 
-    @classmethod
-    def setup_class(cls):
-        cls.football_data = FootballData()
-
     def test_it_works(self):
-        self.assertEqual("Derby", self.football_data.minimum_difference())
+        self.assertEqual("Derby", football_data.minimum_difference())
