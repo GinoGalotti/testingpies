@@ -1,7 +1,5 @@
 # Info and definition on https://github.com/gigasquid/wonderland-clojure-katas/tree/master/card-game-war
 
-# TODO: Fix the playing game
-
 from collections import namedtuple
 from random import shuffle
 
@@ -67,18 +65,18 @@ class CardGame:
         else:
             if self.is_end_game() == 0:
                 # Put 3 cards on the pile and play again
-                self.cards_at_play.append([self.player1_deck.pop(0)])
-                self.cards_at_play.append([self.player2_deck.pop(0)])
+                self.cards_at_play.append(self.player1_deck.pop(0))
+                self.cards_at_play.append(self.player2_deck.pop(0))
                 if self.is_end_game() != 0 :
                     return 0
                 
-                self.cards_at_play.append([self.player1_deck.pop(0)])
-                self.cards_at_play.append([self.player2_deck.pop(0)])
+                self.cards_at_play.append(self.player1_deck.pop(0))
+                self.cards_at_play.append(self.player2_deck.pop(0))
                 if self.is_end_game() != 0:
                     return 0
 
-                self.cards_at_play.append([self.player1_deck.pop(0)])
-                self.cards_at_play.append([self.player2_deck.pop(0)])
+                self.cards_at_play.append(self.player1_deck.pop(0))
+                self.cards_at_play.append(self.player2_deck.pop(0))
                 if self.is_end_game() != 0:
                     return 0
 
@@ -114,6 +112,7 @@ class CardGame:
     
     # Returns 0 when they are the same, 1 when the first one wins, 2 when the second one
     def wins(self, card1, card2):
+        print("Compating {0} with {1}".format(str(card1), str(card2)))
         difference = card1.Value - card2.Value
 
         if difference == 0:

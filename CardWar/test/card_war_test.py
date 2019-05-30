@@ -88,7 +88,7 @@ class CardWardPlayingTest(unittest.TestCase):
         self.assertEqual(11, len(card_game.player1_deck))
         self.assertEqual(1, len(card_game.player2_deck))
 
-    def test_loses_after_a_play(self):
+    def test_get_loses_a_play(self):
         card_game = CardGame()
         deck1 = [Card(CardType.Clubs, CardValue.Ace)]
         deck2 = [Card(CardType.Clubs, CardValue.Queen)]
@@ -98,4 +98,13 @@ class CardWardPlayingTest(unittest.TestCase):
         
         self.assertEqual(2, len(card_game.player1_deck))
         self.assertEqual(0, len(card_game.player2_deck))
+        self.assertEqual(1, card_game.is_end_game())
+
+    def test_loses_while_the_draw(self):
+        card_game = CardGame()
+        deck1 = [Card(CardType.Clubs, CardValue.Ace), Card(CardType.Clubs, CardValue.Queen), Card(CardType.Clubs, CardValue.King)]
+        deck2 = [Card(CardType.Diamonds, CardValue.Ace), Card(CardType.Diamonds, CardValue.Queen)]
+        card_game.set_decks(deck1, deck2)
+
+        card_game.play()
         self.assertEqual(1, card_game.is_end_game())
