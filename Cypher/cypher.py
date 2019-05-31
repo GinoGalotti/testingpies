@@ -3,15 +3,8 @@
 class Cypher:
 
     def __init__(self):
-        self.code = {}
         self.alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
         self.key = list("scones")
-
-        for idx, letter in enumerate(self.alphabet_list):
-            new_list = self.alphabet_list[idx:]
-            new_list.extend(self.alphabet_list[:idx])
-            self.code[letter] = new_list
-            # it's a two dimentional Row - Colum matrix
 
     def set_key(self, key):
         self.key = list(key)
@@ -23,15 +16,29 @@ class Cypher:
         length_of_key = len(self.key)
         for idx, letter in enumerate(list_of_message):
             key_letter = self.key[idx % length_of_key]
-            index_of_key = self.alphabet_list.index(key_letter)
+            key_shift = self.alphabet_list.index(key_letter)
+            new_index = (self.alphabet_list.index(letter) + key_shift) % len(self.alphabet_list)
 
-            message_cypher.append(self.code[letter][index_of_key])
+            message_cypher.append(self.alphabet_list[new_index])
 
         return "".join(message_cypher)
 
-    def decode(self, message): 
+    def decode(self, message):
+        message_cypher = []
+        list_of_message = list(message)
 
-        return False
+        length_of_key = len(self.key)
+        for idx, letter in enumerate(list_of_message):
+            key_letter = self.key[idx % length_of_key]
+            key_shift = self.alphabet_list.index(key_letter)
+            new_index = (self.alphabet_list.index(letter) - key_shift) % len(self.alphabet_list)
+
+            message_cypher.append(self.alphabet_list[new_index])
+
+        return "".join(message_cypher)
+
+    def get_key_shift(self, key_letter):
+        return self.alphabet_list.index(key_letter)
 
     def decipher(self,message, encoded_message):
 

@@ -40,3 +40,17 @@ class DecipherTest(unittest.TestCase):
 
     def test_a_to_find_keys(self):
         self.assertEqual("scones", self.cypher.decipher("packmyboxwithfivedozenliquorjugs", "hcqxqqtqljmlzhwiivgbsapaiwcenmyu"))
+
+class DecodeTest(unittest.TestCase):
+    """
+    Seems to not be able to use a BeforeAll to initiate the Kata
+    """
+
+    # Fail with one number
+
+    @classmethod
+    def setup_class(cls):
+        cls.cypher = Cypher()
+
+    def test_use_keys_longer_than_the_key(self):
+        self.assertEqual("aaaaaaaa", self.cypher.decode("sconessc"))
