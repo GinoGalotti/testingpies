@@ -43,18 +43,15 @@ class CardGame:
         self.cards_at_play = []
 
     def play(self):
-        print("I'm playing " + str(self.player1_deck) +"+"+ str(self.player2_deck))
         card1 = self.player1_deck.pop(0)
         card2 = self.player2_deck.pop(0)
         self.cards_at_play.extend([card1, card2])
 
         result = self.wins(card1,card2)
-        print("Result is {0}".format(str(result)))
 
         if result == 1:
             self.player1_deck.extend(self.cards_at_play)
             self.cards_at_play.clear()
-            print("Player 1 should win with {0}".format(str(self.player1_deck)))
             return 1
         
         elif result == 2:
