@@ -6,8 +6,8 @@ class GameLife():
 
     Cords = namedtuple("Cords", "x, y")
 
-    def __init__(self, board=None):
-        if not board:
+    def __init__(self, board=[]):
+        if board == []:
             print("penis")
             board = [   [ 1, 1, 0, 0, 1],
                         [ 1, 1, 0, 1, 0],
@@ -19,7 +19,7 @@ class GameLife():
         self.x_length = len(board)
         self.y_length = len(board[0])
 
-        print(str(board))
+        print(str(self.board))
         print("Len are {0} and {1}".format(self.x_length, self.y_length))
 
     def round(self):
@@ -34,6 +34,8 @@ class GameLife():
     def alive_neighbours(self, position):
         x = position.x
         y = position.y
+
+        print("{0} and {1}".format(x,y))
 
         not_first_row = x > 0
         not_first_column = y > 0
@@ -64,6 +66,7 @@ class GameLife():
     def dead_or_alive(self, position, is_alive):
 
         switcher = {
+            0: 0,
             1: 0,
             2: 1,
             3: 1,
