@@ -1,7 +1,9 @@
 # Game of Life
 from collections import namedtuple
 
-#Not using Numpy
+# Not using Numpy
+
+
 class GameLife():
 
     Cords = namedtuple("Cords", "x, y")
@@ -9,33 +11,28 @@ class GameLife():
     def __init__(self, board=[]):
         if board == []:
             print("penis")
-            board = [   [ 1, 1, 0, 0, 1],
-                        [ 1, 1, 0, 1, 0],
-                        [ 1, 1, 0, 0, 1],
-                        [ 1, 0, 1, 1, 0], 
-                        [ 1, 1, 0, 1, 1],
-                        [ 1, 1, 0, 1, 1]]
+            board = [[1, 1, 0, 0, 1],
+                     [1, 1, 0, 1, 0],
+                     [1, 1, 0, 0, 1],
+                     [1, 0, 1, 1, 0],
+                     [1, 1, 0, 1, 1],
+                     [1, 1, 0, 1, 1]]
         self.board = board
         self.x_length = len(board)
         self.y_length = len(board[0])
-
-        print(str(self.board))
-        print("Len are {0} and {1}".format(self.x_length, self.y_length))
 
     def round(self):
 
         for x in range(0, self.x_length):
             for y in range(0, self.y_length):
-                self.board[x][y] = self.dead_or_alive(self.Cords(x,y), self.board[x][y])
-                print("testing position {0} with board {1}".format(str(self.Cords(x,y)),str(self.board)))
+                self.board[x][y] = self.dead_or_alive(
+                    self.Cords(x, y), self.board[x][y])
 
         return True
-    
+
     def alive_neighbours(self, position):
         x = position.x
         y = position.y
-
-        print("{0} and {1}".format(x,y))
 
         not_first_row = x > 0
         not_first_column = y > 0
@@ -82,5 +79,5 @@ class GameLife():
         else:
             if (self.alive_neighbours(position) == 3):
                 return 1
-            else: 
+            else:
                 return 0

@@ -28,7 +28,7 @@ class GetSum(unittest.TestCase):
         for i in range(9999):
             self.assertTrue(life.round())
 
-        self.assertLess(9, round(time.time() - started,2))
+        self.assertLess(round(time.time() - started,2),2)
 
     # Add tests with given scenarios
     def test_two_by_two_resurrects(self):
