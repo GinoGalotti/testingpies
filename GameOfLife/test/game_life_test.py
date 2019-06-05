@@ -1,5 +1,5 @@
 import unittest
-import pytest
+import time
 from game_of_life import GameLife
 
 
@@ -10,14 +10,25 @@ class GetSum(unittest.TestCase):
 
     # Fail with one number
 
+    def setUp(self):
+        self._started_at = time.time()
+
+    def tearDown(self):
+        elapsed = time.time() - self._started_at
+        if elapsed > 0.3:
+            print('{} ({}s)'.format(self.id(), round(elapsed, 2)))
+
     def test_a_round_runs(self):
         life = GameLife()
         self.assertTrue(life.round())
 
     def test_run_9999_rounds(self):
+        started = time.time()
         life = GameLife()
         for i in range(9999):
             self.assertTrue(life.round())
+
+        self.assertLess(9, round(time.time() - started,2))
 
     # Add tests with given scenarios
     def test_two_by_two_resurrects(self):
