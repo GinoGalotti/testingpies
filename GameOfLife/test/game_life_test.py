@@ -28,27 +28,27 @@ class GetSum(unittest.TestCase):
         for i in range(9999):
             self.assertTrue(life.round())
 
-        self.assertLess(round(time.time() - started,2),2)
+        self.assertLess(round(time.time() - started, 2), 2)
 
     # Add tests with given scenarios
     def test_two_by_two_resurrects(self):
-        board = [   [ 1, 1],
-                    [ 1, 0]]
+        board = [[1, 1],
+                 [1, 0]]
         game = GameLife(board)
 
         self.assertTrue(game.round())
 
-        after_board = [ [ 1, 1],
-                        [ 1, 1]]
+        after_board = [[1, 1],
+                       [1, 1]]
         self.assertEqual(after_board, game.board)
 
     def test_two_by_two_stays_kills_both(self):
-        board = [   [ 1, 0],
-                    [ 1, 0]]
+        board = [[1, 0],
+                 [1, 0]]
         game = GameLife(board)
 
         self.assertTrue(game.round())
 
-        after_board = [ [ 0, 0],
-                        [ 0, 0]]
+        after_board = [[0, 0],
+                       [0, 0]]
         self.assertEqual(after_board, game.board)
