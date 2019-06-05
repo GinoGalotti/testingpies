@@ -1,5 +1,5 @@
 import unittest
-
+import pytest
 from game_of_life import GameLife
 
 
@@ -10,12 +10,14 @@ class GetSum(unittest.TestCase):
 
     # Fail with one number
 
-    @classmethod
-    def setup_class(cls):
-        cls.life = GameLife()
-
     def test_a_round_runs(self):
-        self.assertTrue(self.life.round())
+        life = GameLife()
+        self.assertTrue(life.round())
+
+    def test_run_9999_rounds(self):
+        life = GameLife()
+        for i in range(9999):
+            self.assertTrue(life.round())
 
     # Add tests with given scenarios
     def test_two_by_two_resurrects(self):
