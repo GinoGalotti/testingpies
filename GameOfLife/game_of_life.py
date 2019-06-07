@@ -34,31 +34,52 @@ class GameLife():
         x = position.x
         y = position.y
 
-        not_first_row = x > 0
-        not_first_column = y > 0
-        not_last_row = x < (self.x_length - 1)
-        not_last_column = y < (self.y_length - 1)
+        # not_first_row = x > 0
+        # not_first_column = y > 0
+        # not_last_row = x < (self.x_length - 1)
+        # not_last_column = y < (self.y_length - 1)
 
+        # neightbours = 0
+
+        # if not_first_column:
+        #     neightbours += self.board[x][y-1]
+        # if not_first_row:
+        #     neightbours += self.board[x-1][y]
+        # if not_first_column and not_first_row:
+        #     neightbours += self.board[x-1][y-1]
+        # if not_last_column:
+        #     neightbours += self.board[x][y+1]
+        # if not_last_row:
+        #     neightbours += self.board[x+1][y]
+        # if not_last_column and not_last_row:
+        #     neightbours += self.board[x+1][y+1]
+        # if not_first_column and not_last_row:
+        #     neightbours += self.board[x+1][y-1]
+        # if not_first_row and not_last_column:
+        #     neightbours += self.board[x-1][y+1]
+
+        # This looks prettier
         neightbours = 0
-
-        if not_first_column:
-            neightbours += self.board[x][y-1]
-        if not_first_row:
-            neightbours += self.board[x-1][y]
-        if not_first_column and not_first_row:
-            neightbours += self.board[x-1][y-1]
-        if not_last_column:
-            neightbours += self.board[x][y+1]
-        if not_last_row:
-            neightbours += self.board[x+1][y]
-        if not_last_column and not_last_row:
-            neightbours += self.board[x+1][y+1]
-        if not_first_column and not_last_row:
-            neightbours += self.board[x+1][y-1]
-        if not_first_row and not_last_column:
-            neightbours += self.board[x-1][y+1]
-
+        neightbours += self.add_neightbour(x-1, y-1)
+        neightbours += self.add_neightbour(x, y-1)
+        neightbours += self.add_neightbour(x-1, y)
+        neightbours += self.add_neightbour(x+1, y+1)
+        neightbours += self.add_neightbour(x, y+1)
+        neightbours += self.add_neightbour(x+1, y)
+        neightbours += self.add_neightbour(x+1, y-1)
+        neightbours += self.add_neightbour(x-1, y+1)
+        
         return neightbours
+
+    def add_neightbour(self, x, y):
+
+        if x <= -1 or x >= (self.x_length):
+            return 0
+        
+        if y <= -1 or y >= (self.y_length):
+            return 0
+
+        return self.board[x][y]
 
     def dead_or_alive(self, position, is_alive):
 
