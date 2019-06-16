@@ -20,3 +20,6 @@ class GetSum(unittest.TestCase):
     def test_sum_return_duplicates(self):
         self.assertEqual(sum_of_pairs.find_pair(
             [1, 2, 1, 4, 3, 3, 2], 4), [1, 3])
+
+    def test_find_shortest_pair(self):
+        self.assertEqual(sum_of_pairs.find_pair([2, 1, 3, 2, 3, 5], 4), [1, 3])
