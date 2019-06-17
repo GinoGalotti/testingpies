@@ -132,3 +132,48 @@ class Mars(unittest.TestCase):
 
         self.assertTrue(mars.is_direction(Direction.W))
         self.assertTrue(mars.is_position((3,4)))
+
+    def test_command_only_moves_till_it_stops(self):
+        landscape = ((0, 0, 0, 1, 0, 0),
+                     (0, 1, 0, 0, 0, 0),
+                     (0, 0, 0, 1, 0, 0),
+                     (0, 0, 0, 0, 0, 1),
+                     (0, 0, 1, 1, 1, 0),
+                     (0, 0, 0, 0, 0, 0))
+
+        mars = Rover(landscape, (0, 0), Direction.E)
+
+        # We move two to the right, but the next one finds an obstacle
+        mars.command("F-F-F")
+       
+        self.assertTrue(mars.is_direction(Direction.E))
+        self.assertTrue(mars.is_position((0,2)))
+
+    def test_command_little_journey(self):
+        landscape = ((0, 0, 0, 1, 0, 0),
+                     (0, 1, 0, 0, 0, 0),
+                     (0, 0, 0, 1, 0, 0),
+                     (0, 0, 0, 0, 0, 1),
+                     (0, 0, 1, 1, 1, 0),
+                     (0, 0, 0, 0, 0, 0))
+
+        mars = Rover(landscape, (0, 0), Direction.E)
+
+        # We move two to the right, but the next one finds an obstacle
+        mars.command("F-F-F")
+             
+        self.assertTrue(mars.is_direction(Direction.E))
+        self.assertTrue(mars.is_position((0,2)))
+
+        # We turn to the South and move three spaces, the next is an obstacle
+        mars.command("R-F-F-F-F")
+
+        self.assertTrue(mars.is_direction(Direction.S))
+        self.assertTrue(mars.is_position((3,2)))
+
+        # We turn to the West and move backwards two spaces, the next is an obstacle
+        mars.command("R-B-B-B")
+
+        self.assertTrue(mars.is_direction(Direction.W))
+        self.assertTrue(mars.is_position((3,4)))
+

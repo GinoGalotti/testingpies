@@ -122,3 +122,18 @@ class Rover:
 
     def is_direction(self, direction):
         return direction == self.direction
+
+    def command(self, commands: str):
+        actions = commands.split("-")
+        
+        for action in actions:
+            if action == "F":
+                self.move_forward()
+            elif action == "B":
+                self.move_backwards()
+            elif action == "R":
+                self.turn_right()
+            elif action == "L":
+                self.turn_left()
+            else:
+                print("Skipping invalid command")
